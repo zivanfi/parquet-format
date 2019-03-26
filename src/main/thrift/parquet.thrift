@@ -225,12 +225,12 @@ struct Statistics {
 }
 
 /** Empty structs to use as logical type annotations */
-struct StringType {}  // allowed for BINARY, must be encoded with UTF-8
-struct UUIDType {}    // allowed for FIXED[16], must encoded raw UUID bytes
-struct MapType {}     // see LogicalTypes.md
-struct ListType {}    // see LogicalTypes.md
-struct EnumType {}    // allowed for BINARY, must be encoded with UTF-8
-struct DateType {}    // allowed for INT32
+struct StringType {32767: optional i32 dummy;}  // allowed for BINARY, must be encoded with UTF-8
+struct UUIDType {32767: optional i32 dummy;}    // allowed for FIXED[16], must encoded raw UUID bytes
+struct MapType {32767: optional i32 dummy;}     // see LogicalTypes.md
+struct ListType {32767: optional i32 dummy;}    // see LogicalTypes.md
+struct EnumType {32767: optional i32 dummy;}    // allowed for BINARY, must be encoded with UTF-8
+struct DateType {32767: optional i32 dummy;}    // allowed for INT32
 
 /**
  * Logical type to annotate a column that is always null.
@@ -239,7 +239,7 @@ struct DateType {}    // allowed for INT32
  * null and the physical type can't be determined. This annotation signals
  * the case where the physical type was guessed from all null values.
  */
-struct NullType {}    // allowed for any physical type, only null values stored
+struct NullType {32767: optional i32 dummy;}    // allowed for any physical type, only null values stored
 
 /**
  * Decimal logical type annotation
@@ -255,9 +255,9 @@ struct DecimalType {
 }
 
 /** Time units for logical types */
-struct MilliSeconds {}
-struct MicroSeconds {}
-struct NanoSeconds {}
+struct MilliSeconds {32767: optional i32 dummy;}
+struct MicroSeconds {32767: optional i32 dummy;}
+struct NanoSeconds {32767: optional i32 dummy;}
 union TimeUnit {
   1: MilliSeconds MILLIS
   2: MicroSeconds MICROS
@@ -515,6 +515,7 @@ struct DataPageHeader {
 
 struct IndexPageHeader {
   /** TODO: **/
+  32767: optional i32 dummy;
 }
 
 struct DictionaryPageHeader {
@@ -563,7 +564,7 @@ struct DataPageHeaderV2 {
 }
 
 /** Block-based algorithm type annotation. **/
-struct SplitBlockAlgorithm {}
+struct SplitBlockAlgorithm {32767: optional i32 dummy;}
 /** The algorithm used in Bloom filter. **/
 union BloomFilterAlgorithm {
   /** Block-based Bloom filter. **/
@@ -572,7 +573,7 @@ union BloomFilterAlgorithm {
 /** Hash strategy type annotation. It uses Murmur3Hash_x64_128 from the original SMHasher
  * repo by Austin Appleby.
  **/
-struct Murmur3 {}
+struct Murmur3 {32767: optional i32 dummy;}
 /** 
  * The hash function used in Bloom filter. This function takes the hash of a column value
  * using plain encoding.
@@ -774,7 +775,7 @@ struct RowGroup {
 }
 
 /** Empty struct to signal the order defined by the physical or logical type */
-struct TypeDefinedOrder {}
+struct TypeDefinedOrder {32767: optional i32 dummy;}
 
 /**
  * Union to specify the order used for the min_value and max_value fields for a
